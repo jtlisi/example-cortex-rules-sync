@@ -1,0 +1,12 @@
+groups:
+- name: demo_rule_group
+  rules:
+  - record: sum_up
+    expr: sum(up)
+  - alert: high_sum_up
+    expr: sum_up > 1
+    for: 1m
+    labels:
+      demo: success
+    annotations:
+      summary: Lots of services are up
