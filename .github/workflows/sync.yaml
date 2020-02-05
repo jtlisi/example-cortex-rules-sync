@@ -6,8 +6,9 @@ jobs:
     steps:
       - name: diff-rules
         uses: grafana//cortex-rules-action@master
-        with:
-          rules_dir_path: "rules/"
-          endpoint: https://dev-us-central1.grafana.net/api/prom
-          instance_id: 5842
-          action: diff
+        env:
+          CORTEX_ADDRESS: https://dev-us-central1.grafana.net/api/prom
+          CORTEX_TENANT_ID: 5842
+          CORTEX_API_KEY: ${{ secrets.cortex_api_key }}
+          ACTION: diff
+          RULES_DIR: "rules/"
