@@ -1,5 +1,5 @@
 name: sync_rules
-on: [push, pull_request] # Trigger the workflow on push or pull request
+on: [pull_request]
 jobs:
   diff-pr:
     runs-on: ubuntu-latest
@@ -11,4 +11,4 @@ jobs:
           CORTEX_TENANT_ID: 5842
           CORTEX_API_KEY: ${{ secrets.cortex_api_key }}
           ACTION: diff
-          RULES_DIR: "./rules/"
+          RULES_DIR: "rules"
