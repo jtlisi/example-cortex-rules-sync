@@ -11,6 +11,6 @@ jobs:
         env:
           CORTEX_ADDRESS: https://dev-us-central1.grafana.net/api/prom
           CORTEX_TENANT_ID: 5842
-          CORTEX_API_KEY: ${{ secrets.cortex_api_key }}
+          CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }}
           ACTION: diff
           RULES_DIR: "./rules/"
