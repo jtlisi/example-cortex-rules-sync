@@ -1,0 +1,16 @@
+name: sync_rules
+on: [pull_request]
+jobs:
+  diff-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: diff-rules
+        uses: grafana//cortex-rules-action@master
+        env:
+          CORTEX_ADDRESS: https://prometheus-us-central1.grafana.net
+          CORTEX_TENANT_ID: 5879
+          CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }}
+          ACTION: diff
+          RULES_DIR: "./rules/"

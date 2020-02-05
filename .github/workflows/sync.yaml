@@ -1,16 +1,21 @@
-name: sync_rules
-on: [pull_request]
+name: sync_rules_master
+on:
+ push:
+   branches:
+     - master
 jobs:
   diff-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: diff-rules
+        with:
+          ref: master
+      - name: sync-rules
         uses: grafana//cortex-rules-action@master
         env:
-          CORTEX_ADDRESS: https://dev-us-central1.grafana.net/
-          CORTEX_TENANT_ID: 5842
-          CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }}
-          ACTION: diff
-          RULES_DIR: "./rules/"
+          CORTEX_ADDRESS: https://prometheus-us-central1.grafana.net
+          CORTEX_TENANT_ID: 5879
+          CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }} # Encrypted Github Secret https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets
+          ACTION: sync
+          RULES_DIR: "./rules/" # In this example rules are stored in a rules directory in the repo 
