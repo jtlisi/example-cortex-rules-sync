@@ -9,7 +9,7 @@ jobs:
       - name: diff-rules
         uses: grafana//cortex-rules-action@master
         env:
-          CORTEX_ADDRESS: https://dev-us-central1.grafana.net/api/prom
+          CORTEX_ADDRESS: https://dev-us-central1.grafana.net/
           CORTEX_TENANT_ID: 5842
           CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }}
           ACTION: diff
