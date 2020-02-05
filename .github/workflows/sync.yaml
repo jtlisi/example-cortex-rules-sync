@@ -13,4 +13,4 @@ jobs:
           CORTEX_TENANT_ID: 5842
           CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }}
           ACTION: diff
-          RULES_DIR: "./rules/"
+          RULES_DIR: "./rules"
