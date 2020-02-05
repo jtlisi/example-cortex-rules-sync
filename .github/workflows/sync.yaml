@@ -4,6 +4,8 @@ jobs:
   diff-pr:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: diff-rules
         uses: grafana//cortex-rules-action@master
         env:
@@ -11,4 +13,4 @@ jobs:
           CORTEX_TENANT_ID: 5842
           CORTEX_API_KEY: ${{ secrets.cortex_api_key }}
           ACTION: diff
-          RULES_DIR: "rules"
+          RULES_DIR: "./rules/"
