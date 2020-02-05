@@ -1,13 +1,21 @@
-name: sync_rules
-on: [push, pull_request] # Trigger the workflow on push or pull request
+name: sync_rules_master
+on:
+ push:
+   branches:
+     - master
 jobs:
   diff-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: diff-rules
-        uses: grafana//cortex-rules-action@master
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          rules_dir_path: "rules/"
-          endpoint: https://dev-us-central1.grafana.net/api/prom
-          instance_id: 5842
-          action: diff
+          ref: master
+      - name: sync-rules
+        uses: grafana//cortex-rules-action@master
+        env:
+          CORTEX_ADDRESS: https://prometheus-us-central1.grafana.net
+          CORTEX_TENANT_ID: 5879
+          CORTEX_API_KEY: ${{ secrets.CORTEX_API_KEY }} # Encrypted Github Secret https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets
+          ACTION: sync
+          RULES_DIR: "./rules/" # In this example rules are stored in a rules directory in the repo 
